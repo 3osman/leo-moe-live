@@ -1,0 +1,12 @@
+label {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: left !important;
+  align-items: center !important;
+  height: 20px !important;
+}
+
+img {
+  height: 30px;
+  margin-right: 10px;
+}
