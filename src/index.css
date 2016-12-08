@@ -5,9 +5,9 @@ body {
   height: 100vh;
 }
 
-.search-container {
+.container {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+}
+
+.card-panel {
 }

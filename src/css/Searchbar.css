@@ -1,23 +1,24 @@
 .Searchbar {
   padding: 20px;
   display: flex;
-  flex-direction: row;
-  justify-content: left;
+  flex-direction: row-reverse;
+  justify-content: right;
   align-items: center;
+  border-radius: 50px;
 }
 .search-text {
+  flex-grow: 2;
   font-size: 1.2rem !important;
   margin: 0 !important;
   line-height: 2.5rem;
   margin-left: 20px !important;
   height: auto !important;
-  width: 200px !important;
   border-bottom: none !important;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  width: auto !important;
 }
-
 .search-text:focus {
-  width: 100% !important;
   color: #000 !important;
+}
+.search-button {
+  flex-shrink: 0;
 }
