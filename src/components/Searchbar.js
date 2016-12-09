@@ -6,26 +6,50 @@ import './../css/Searchbar.css';
 class Searchbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: "", disabled: true};
+    this.state = {value: "",
+                  services: {
+                    youtube: true,
+                    periscope: true
+                  }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
+    this.setSearchService = this.setSearchService.bind(this);
   }
   handleChange(event) {
     this.setState({value: event.target.value});
-    (this.state.value === "") ? this.setState({disabled: true}) : this.setState({disabled: false});
   }
   search(event) {
     event.preventDefault();
-    if (this.state.value !== "") {
-      browserHistory.push('/search?value='+this.state.value);
+    if (this.state.value !== "" &&
+        !(this.state.services.youtube === false &&
+          this.state.services.periscope === false)) {
+      browserHistory.push('/search?value=' +
+                          this.state.value +
+                          '?yt=' +
+                          this.state.services.youtube +
+                          '?p=' +
+                          this.state.services.periscope);
+    }
+  }
+  setSearchService(type, value) {
+    if (type === 'youtube') {
+      this.setState({ services: { ...this.state.services, youtube: value } });
+    }
+    else if (type === 'periscope') {
+      this.setState({ services: { ...this.state.services, periscope: value } });
     }
   }
   render() {
     return (
       <CardPanel className="Searchbar">
-        {/*<i className="grey-text grey-darken-4 material-icons">search</i>*/}
         <Link onClick={this.search}>
-        <Button floating large className='teal lighten-2 search-button' waves='light' icon='search' disabled={this.state.disabled} />
+        <Button floating large
+                className='teal lighten-2 search-button'
+                waves='light' icon='search'
+                disabled={this.state.value === "" ||
+                          this.state.services.youtube === false &&
+                          this.state.services.periscope === false} />
         </Link>
         <input className="search-text grey-text grey-darken-4"
                type="text"

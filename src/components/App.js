@@ -7,6 +7,12 @@ import {Row, Col, CardPanel} from 'react-materialize';
 import './../css/App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  onChildChanged(type, value) {
+    this.refs.searchbar.setSearchService(type, value);
+  }
   render() {
     return (
       <div className="search-container">
@@ -19,16 +25,16 @@ class App extends Component {
           </Row>
           <Row>
             <Col s={12} m={10} offset={"m1"}>
-              <Searchbar>
+              <Searchbar ref="searchbar">
               </Searchbar>
             </Col>
           </Row>
           <Row>
             <Col s={12} m={5} l={4} offset={"m1 l2"}>
-              <Streamcard name="Youtube Live" type="youtube" />
+              <Streamcard name="Youtube Live" type="youtube" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={5} l={4}>
-              <Streamcard name="Periscope" type="periscope" />
+              <Streamcard name="Periscope" type="periscope" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
           </Row>
         </div>
