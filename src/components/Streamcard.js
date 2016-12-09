@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {CardPanel, Input, Col} from 'react-materialize';
+import {CardPanel} from 'react-materialize';
 import './../css/Streamcard.css';
 import youtube from './../img/youtube-logo.svg';
 import periscope from './../img/periscope-logo.svg';
@@ -23,7 +23,7 @@ class Streamcard extends Component {
                onChange={this.handleChange}
                />
         <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
-          <img src={this.props.type == 'youtube' ? youtube : periscope} alt="Logo" />
+          <img src={this.props.type === 'youtube' ? youtube : periscope} alt="Logo" />
           {this.props.name}
         </label>
       </CardPanel>

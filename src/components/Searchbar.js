@@ -26,9 +26,9 @@ class Searchbar extends Component {
           this.state.services.periscope === false)) {
       browserHistory.push('/search?value=' +
                           this.state.value +
-                          '?yt=' +
+                          '&yt=' +
                           this.state.services.youtube +
-                          '?p=' +
+                          '&p=' +
                           this.state.services.periscope);
     }
   }
@@ -48,8 +48,8 @@ class Searchbar extends Component {
                 className='teal lighten-2 search-button'
                 waves='light' icon='search'
                 disabled={this.state.value === "" ||
-                          this.state.services.youtube === false &&
-                          this.state.services.periscope === false} />
+                          (this.state.services.youtube === false &&
+                          this.state.services.periscope === false)} />
         </Link>
         <input className="search-text grey-text grey-darken-4"
                type="text"

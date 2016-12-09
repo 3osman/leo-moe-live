@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import logo from './../logo.svg';
 import Streamcard from './../components/Streamcard';
 import Searchbar from './../components/Searchbar';
-import Search from './../components/Search';
-import {Row, Col, CardPanel} from 'react-materialize';
+import {Row, Col} from 'react-materialize';
 import './../css/App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
   }
