@@ -11,7 +11,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="search-container">
+      <div className="search-container container">
         <div className="App">
           <Row>
             <h3 className="logo-wrapper">
@@ -27,10 +27,10 @@ class App extends Component {
           </Row>
           <Row>
             <Col s={12} m={5} l={4} offset={"m1 l2"}>
-              <Streamcard name="Youtube Live" type="youtube" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+              <Streamcard name="Youtube Live" type="youtube" mini="false" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={5} l={4}>
-              <Streamcard name="Periscope" type="periscope" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+              <Streamcard name="Periscope" type="periscope" mini="false" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
           </Row>
         </div>
