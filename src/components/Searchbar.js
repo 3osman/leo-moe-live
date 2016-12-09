@@ -6,10 +6,10 @@ import './../css/Searchbar.css';
 class Searchbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: "",
+    this.state = {value: ((this.props.value) ? this.props.value : "" ),
                   services: {
-                    youtube: true,
-                    periscope: true
+                    youtube: this.props.youtube,
+                    periscope: this.props.periscope
                   }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +30,9 @@ class Searchbar extends Component {
                           this.state.services.youtube +
                           '&p=' +
                           this.state.services.periscope);
+      if (this.props.mini) {
+        this.props.callbackParent(this.state.value, this.state.youtube, this.state.periscope);
+      }
     }
   }
   setSearchService(type, value) {
@@ -54,8 +57,9 @@ class Searchbar extends Component {
         <input className="search-text grey-text grey-darken-4"
                type="text"
                name="search"
-               placeholder="Search live stream.."
-               value={this.state.value} onChange={this.handleChange} />
+               placeholder={(this.state.value !== "") ? this.state.value : "Search live stream.."}
+               value={this.state.value}
+               onChange={this.handleChange} />
       </CardPanel>
     );
   }

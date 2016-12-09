@@ -4,23 +4,78 @@ import {Row, Col, CardPanel} from 'react-materialize';
 import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
 import './../css/Search.css';
-import Request from 'react-http-request';
 import {Link, browserHistory} from 'react-router';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: this.props.location.query.value,
-                  youtube: this.props.location.query.yt,
-                  periscope: this.props.location.query.p,
-                  response: ""};
+    this.state = {results: "",
+                  loading: true,
+                  error: null};
     this.updateResult = this.updateResult.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
   updateResult(res) {
-    this.setState({response: res });
+    this.setState({results: res });
   }
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
+  }
+  componentDidMount() {
+    this.fetchData(this.props.location.query.value, this.props.location.query.yt, this.props.location.query.p);
+  }
+  fetchData(v, yt, p) {
+    this.setState({loading: true, error: null});
+    var plats = {
+      youtube: (yt === 'true') ? 'youtube' : null,
+      periscope: (p === 'true') ? 'periscope' : null
+    }
+    axios.get('https://live-stream-api.herokuapp.com/v1/videos/search', {
+               params: {
+                 query: v,
+                 platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
+               }})
+      .then(res => {
+        console.log(res.request.responseURL);
+        this.updateResult(res.data.response);
+        this.setState({
+          loading: false,
+          error: null
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          error: err
+        });
+      });
+  }
+  renderLoading() {
+    return (
+      <div className="progress">
+          <div className="indeterminate"></div>
+      </div>
+    );
+  }
+  renderError() {
+    return (
+      <div>
+        Uh oh: {this.state.error.message}
+      </div>
+    );
+  }
+  renderResults() {
+    if(this.state.error) {
+      return this.renderError();
+    }
+    else {
+      return (
+        <div>
+          {this.state.results}
+          </div>
+      );
+    }
   }
   render() {
     return (
@@ -34,52 +89,42 @@ class Search extends Component {
                 </Link>
               </Col>
               <Col s={12} m={6} className="mini" >
-                <Searchbar ref="searchbar" value={this.state.value} youtube={this.state.youtube} periscope={this.state.periscope}>
+                <Searchbar ref="searchbar" mini="true"
+                           value={this.props.location.query.value}
+                           youtube={this.props.location.query.yt === 'true'}
+                           periscope={this.props.location.query.p === 'true'}
+                           callbackParent={(v, yt, p) => this.fetchData(v, yt, p)}>
                 </Searchbar>
               </Col>
               <Col m={4} className="hide-on-small-only">
-                  <Streamchoice name="Youtube Live" type="youtube" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Periscope" type="periscope" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice name="Youtube Live" type="youtube"
+                                initialChecked={this.props.location.query.yt === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice name="Periscope" type="periscope"
+                                initialChecked={this.props.location.query.p === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
               <Col s={12} offset={"s1"} className="hide-on-med-and-up mobile">
-                  <Streamchoice name="Youtube Live" type="youtube" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Periscope" type="periscope" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice name="Youtube Live" type="youtube"
+                                initialChecked={this.props.location.query.yt === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice name="Periscope" type="periscope"
+                                initialChecked={this.props.location.query.p === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
             </Row>
           </div>
         </nav>
-        <Request
-          url={'https://live-stream-api.herokuapp.com/v1/videos/search?query=' +
-              this.state.value +
-              '&platforms=' +
-              'youtube'}
-          withCredentials={true}
-          method='get'
-          accept='application/json'
-          verbose={true}
-        >
-          {
-            ({error, result, loading}) => {
-              if (loading) {
-                return (
-                  <div className="progress">
-                      <div className="indeterminate"></div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="container">
-                    <Row>
-                      <Col s={12}>
-                        <div>{ () => this.updateResult(result) }</div>
-                      </Col>
-                    </Row>
-                  </div>
-                );
+        <div className="container">
+          <Row>
+            <Col s={12}> {
+              this.state.loading ?
+              this.renderLoading() :
+              this.renderResults()
               }
-            }
-          }
-        </Request>
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }

@@ -21,16 +21,20 @@ class App extends Component {
           </Row>
           <Row>
             <Col s={12} m={10} offset={"m1"}>
-              <Searchbar ref="searchbar">
+              <Searchbar ref="searchbar" youtube="true" periscope="true">
               </Searchbar>
             </Col>
           </Row>
           <Row>
             <Col s={12} m={5} l={4} offset={"m1 l2"}>
-              <Streamcard name="Youtube Live" type="youtube" mini="false" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+              <Streamcard name="Youtube Live" type="youtube" mini="false"
+                          initialChecked="true"
+                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={5} l={4}>
-              <Streamcard name="Periscope" type="periscope" mini="false" initialChecked="true" callbackParent={(type, value) => this.onChildChanged(type, value)} />
+              <Streamcard name="Periscope" type="periscope" mini="false"
+                          initialChecked="true"
+                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
           </Row>
         </div>
