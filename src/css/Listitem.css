@@ -1,0 +1,12 @@
+.item-thumbnail {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  left: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.collection .collection-item.avatar {
+  padding-left: 100px;
+}

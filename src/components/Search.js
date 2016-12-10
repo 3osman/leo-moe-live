@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import {Row, Col} from 'react-materialize';
+import {Row, Col, Collection, ProgressBar} from 'react-materialize';
 import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
+import Listitem from './../components/Listitem';
 import './../css/Search.css';
 import {Link} from 'react-router';
 import axios from 'axios';
@@ -17,7 +18,7 @@ class Search extends Component {
     this.fetchData = this.fetchData.bind(this);
   }
   updateResult(res) {
-    this.setState({results: res });
+    this.setState({results: res.split(',') });
   }
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
@@ -39,7 +40,6 @@ class Search extends Component {
                  platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
                }})
       .then(res => {
-        console.log(res.request.responseURL);
         this.updateResult(res.data.response);
         this.setState({
           loading: false,
@@ -55,9 +55,7 @@ class Search extends Component {
   }
   renderLoading() {
     return (
-      <div className="progress">
-          <div className="indeterminate"></div>
-      </div>
+      <ProgressBar />
     );
   }
   renderError() {
@@ -72,10 +70,17 @@ class Search extends Component {
       return this.renderError();
     }
     else {
+      var items = this.state.results;
+      var itemList = items.map(function(it, index){
+                      return (
+                          <Listitem url={it} key={index}>
+                          </Listitem>
+                      );
+                    })
       return (
-        <div>
-          {this.state.results}
-          </div>
+        <Collection>
+          {itemList}
+        </Collection>
       );
     }
   }
