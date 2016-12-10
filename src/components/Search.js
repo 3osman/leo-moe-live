@@ -23,7 +23,9 @@ class Search extends Component {
     this.refs.searchbar.setSearchService(type, value);
   }
   componentDidMount() {
-    this.fetchData(this.props.location.query.value, this.props.location.query.yt, this.props.location.query.p);
+    this.fetchData(this.props.location.query.value,
+                   this.props.location.query.yt === 'true' ? true : false,
+                   this.props.location.query.p === 'true' ? true : false);
   }
   fetchData(v, yt, p) {
     this.setState({loading: true, error: null});
