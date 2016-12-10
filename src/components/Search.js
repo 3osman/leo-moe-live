@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import {Row, Col, CardPanel} from 'react-materialize';
+import {Row, Col} from 'react-materialize';
 import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
 import './../css/Search.css';
-import {Link, browserHistory} from 'react-router';
+import {Link} from 'react-router';
 import axios from 'axios';
 
 class Search extends Component {
@@ -27,9 +27,9 @@ class Search extends Component {
   }
   fetchData(v, yt, p) {
     this.setState({loading: true, error: null});
-    var plats = {
-      youtube: (yt === 'true') ? 'youtube' : null,
-      periscope: (p === 'true') ? 'periscope' : null
+    let plats = {
+      youtube: (yt) ? 'youtube' : null,
+      periscope: (p) ? 'periscope' : null
     }
     axios.get('https://live-stream-api.herokuapp.com/v1/videos/search', {
                params: {

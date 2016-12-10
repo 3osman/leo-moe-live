@@ -31,7 +31,7 @@ class Searchbar extends Component {
                           '&p=' +
                           this.state.services.periscope);
       if (this.props.mini) {
-        this.props.callbackParent(this.state.value, this.state.youtube, this.state.periscope);
+        this.props.callbackParent(this.state.value, this.state.services.youtube, this.state.services.periscope);
       }
     }
   }
