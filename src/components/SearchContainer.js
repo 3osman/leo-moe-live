@@ -3,6 +3,8 @@ import SearchView from './../components/SearchView';
 import './../css/SearchContainer.css';
 import axios from 'axios';
 
+const api_url = 'https://live-stream-api.herokuapp.com/v1/videos/search';
+
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class SearchContainer extends Component {
       youtube: (yt) ? 'youtube' : null,
       twitch: (t) ? 'twitch' : null
     }
-    axios.get('https://live-stream-api.herokuapp.com/v1/videos/search', {
+    axios.get(api_url, {
                params: {
                  query: v,
                  platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
