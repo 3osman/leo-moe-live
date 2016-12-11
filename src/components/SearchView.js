@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import {Row, Col, ProgressBar} from 'react-materialize';
+import {Row, Col, ProgressBar, Collection} from 'react-materialize';
 import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
-import Searchlist from './../components/Searchlist';
+import Listitem from './../components/Listitem';
 import './../css/SearchView.css';
 import {Link} from 'react-router';
 
@@ -28,13 +28,23 @@ class SearchView extends Component {
       return this.renderError();
     }
     else {
-      // Concat two arrays for now (twitch + youtube)
-      var itemsArray = [];
-      itemsArray = (this.props.results.youtube) ? itemsArray.concat(this.props.results.youtube) : itemsArray;
-      itemsArray = (this.props.results.twitch) ? itemsArray.concat(this.props.results.twitch) : itemsArray;
+      var youtubeList = this.props.results.youtube.map(function(it, it_index){
+                      return (
+                          <Listitem object={it} platform="youtube" key={it_index}>
+                          </Listitem>
+                      );
+                    });
+      var twitchList = this.props.results.twitch.map(function(it, it_index){
+                      return (
+                          <Listitem object={it} platform="twitch" key={it_index}>
+                          </Listitem>
+                      );
+                    });
       return (
-        <Searchlist list={itemsArray}>
-        </Searchlist>
+        <Collection>
+          {youtubeList}
+          {twitchList}
+        </Collection>
       );
     }
   }
@@ -58,18 +68,18 @@ class SearchView extends Component {
                 </Searchbar>
               </Col>
               <Col m={4} className="hide-on-small-only">
-                  <Streamchoice name="Youtube Live" type="youtube"
+                  <Streamchoice mini={true} name="Youtube Live" type="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Twitch" type="twitch"
+                  <Streamchoice mini={true} name="Twitch" type="twitch"
                                 initialChecked={this.props.location.query.t === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
               <Col s={12} offset={"s1"} className="hide-on-med-and-up mobile">
-                  <Streamchoice name="Youtube Live" type="youtube"
+                  <Streamchoice mini={true} name="Youtube Live" type="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Twitch" type="twitch"
+                  <Streamchoice mini={true} name="Twitch" type="twitch"
                                 initialChecked={this.props.location.query.t === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>

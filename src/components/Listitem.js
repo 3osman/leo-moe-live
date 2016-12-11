@@ -7,17 +7,26 @@ import {CollectionItem} from 'react-materialize';
 class Listitem extends Component {
   constructor(props) {
     super(props);
-    this.state = {object: this.props.object};
+    this.state = {id: ""};
+  }
+  componentDidMount() {
+    if (this.props.platform === 'youtube') {
+      this.setState({id: this.props.object.streaming_url.split('/')[4]});
+    }
+    else if (this.props.platform === 'twitch') {
+      this.setState({id: this.props.object.browser_url.split('/')[3]});
+    }
   }
   render() {
     return (
-      <CollectionItem href={'/video/'+this.state.object.title} className="avatar">
-        <img src={this.state.object.thumbnail} className="item-thumbnail" alt="thumbnail" />
+      <CollectionItem href={'/video/' + this.state.id + '/' + this.props.platform} className="avatar Listitem">
+        <img src={this.props.object.thumbnail} className="item-thumbnail" alt="thumbnail" />
         <span className="title black-text">
-          {this.state.object.title}
+          {this.props.object.title}
         </span>
         <div className="grey-text item-body">
-          <img src={(this.state.object.platform === 'youtube') ? youtube : twitch} alt="Logo" />
+          <img src={(this.props.platform === 'youtube') ? youtube : twitch} alt="Logo" />
+          {(this.props.platform === 'youtube') ? "Youtube Live" : "Twitch"}
         </div>
       </CollectionItem>
     );

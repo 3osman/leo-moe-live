@@ -1,10 +1,10 @@
-.navbar {
+.Search .navbar {
   position: relative;
   height: auto;
   float: left;
   width: 100%;
 }
-.navbar .navbar-wrapper {
+.Search .navbar .navbar-wrapper {
   position: relative;
   height: auto;
   float: left;
@@ -12,7 +12,10 @@
   padding-bottom: 0px;
   margin-bottom: 0;
 }
-.navbar .navbar-wrapper .row {
+.Search .navbar .navbar-wrapper .row {
   margin-top: 10px;
   margin-bottom: 0px;
+}
+.Search .collection {
+  border: none;
 }

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import Streamcard from './../components/Streamcard';
+import Streamchoice from './../components/Streamchoice';
 import Searchbar from './../components/Searchbar';
 import {Row, Col} from 'react-materialize';
-import './../css/App.css';
+import './../css/Home.css';
 
-class App extends Component {
+class Home extends Component {
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
   }
   render() {
     return (
       <div className="search-container container">
-        <div className="App">
+        <div className="Home">
           <Row>
             <h3 className="logo-wrapper">
               <img src={logo} className="App-logo" alt="logo" />
@@ -27,12 +27,12 @@ class App extends Component {
           </Row>
           <Row>
             <Col s={12} m={5} l={4} offset={"m1 l2"}>
-              <Streamcard name="Youtube Live" type="youtube" mini="false"
+              <Streamchoice mini={false} name="Youtube Live" type="youtube"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={5} l={4}>
-              <Streamcard name="Twitch" type="twitch" mini="false"
+              <Streamchoice mini={false} name="Twitch" type="twitch"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
@@ -43,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;

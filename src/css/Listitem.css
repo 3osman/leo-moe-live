@@ -1,4 +1,4 @@
-.item-thumbnail {
+.Search .item-thumbnail {
   position: absolute;
   width: 85px;
   height: 64px;
@@ -7,12 +7,17 @@
   display: inline-block;
   vertical-align: middle;
 }
-.collection .collection-item.avatar {
+.Search .collection .collection-item.avatar {
   padding-left: 125px;
 }
-
-.collection .collection-item .item-body {
+.Search .collection a.collection-item:hover {
+  background-color: #efefef;
+}
+.Search .collection .collection-item .item-body {
   padding-top: 5px;
   display: flex;
   align-items: center;
+}
+.Search .Listitem img {
+  margin-right: 5px;
 }
