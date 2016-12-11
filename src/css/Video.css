@@ -1,0 +1,7 @@
+.Video .navbar-content {
+  display: flex;
+  align-items: center;
+}
+.Video nav i.material-icons {
+  display: inline-block;
+}

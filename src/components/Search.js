@@ -5,7 +5,7 @@ import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
 import Listitem from './../components/Listitem';
 import './../css/Search.css';
-import {Link} from 'react-router';
+import {Link} from 'react-router'
 import axios from 'axios';
 
 class Search extends Component {
@@ -18,7 +18,7 @@ class Search extends Component {
     this.fetchData = this.fetchData.bind(this);
   }
   updateResult(res) {
-    this.setState({results: res.split(',') });
+    this.setState({results: res });
   }
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
@@ -40,7 +40,7 @@ class Search extends Component {
                  platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
                }})
       .then(res => {
-        this.updateResult(res.data.response);
+        this.updateResult(res.data);
         this.setState({
           loading: false,
           error: null
@@ -73,7 +73,7 @@ class Search extends Component {
       var items = this.state.results;
       var itemList = items.map(function(it, index){
                       return (
-                          <Listitem url={it} key={index}>
+                          <Listitem object={it} key={index}>
                           </Listitem>
                       );
                     })

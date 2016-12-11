@@ -10,3 +10,9 @@
 .collection .collection-item.avatar {
   padding-left: 100px;
 }
+
+.collection .collection-item .item-body {
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}

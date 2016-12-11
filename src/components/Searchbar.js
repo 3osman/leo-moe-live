@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {CardPanel, Button} from 'react-materialize';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
+import {Link} from 'react-router'
 import './../css/Searchbar.css';
 
 class Searchbar extends Component {
