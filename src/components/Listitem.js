@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './../css/Listitem.css';
-import thumb from './../img/thumbnail.svg';
 import youtube from './../img/youtube-logo.svg';
-import periscope from './../img/periscope-logo.svg';
+import twitch from './../img/twitch-logo.svg';
 import {CollectionItem} from 'react-materialize';
 
 class Listitem extends Component {
@@ -12,13 +11,13 @@ class Listitem extends Component {
   }
   render() {
     return (
-      <CollectionItem href={'/video/URLHERE'} className="avatar">
-        <img src={thumb} className="item-thumbnail" alt="thumbnail" />
+      <CollectionItem href={'/video/'+this.state.object.title} className="avatar">
+        <img src={this.state.object.thumbnail} className="item-thumbnail" alt="thumbnail" />
         <span className="title black-text">
           {this.state.object.title}
         </span>
         <div className="grey-text item-body">
-          <img src={(this.state.object.platform === 'youtube') ? youtube : periscope} alt="Logo" />
+          <img src={(this.state.object.platform === 'youtube') ? youtube : twitch} alt="Logo" />
         </div>
       </CollectionItem>
     );

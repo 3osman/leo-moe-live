@@ -1,57 +1,15 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import {Row, Col, Collection, ProgressBar} from 'react-materialize';
+import {Row, Col, ProgressBar} from 'react-materialize';
 import Searchbar from './../components/Searchbar';
 import Streamchoice from './../components/Streamchoice';
-import Listitem from './../components/Listitem';
-import './../css/Search.css';
-import {Link} from 'react-router'
-import axios from 'axios';
+import Searchlist from './../components/Searchlist';
+import './../css/SearchView.css';
+import {Link} from 'react-router';
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {results: "",
-                  loading: true,
-                  error: null};
-    this.updateResult = this.updateResult.bind(this);
-    this.fetchData = this.fetchData.bind(this);
-  }
-  updateResult(res) {
-    this.setState({results: res });
-  }
+class SearchView extends Component {
   onChildChanged(type, value) {
     this.refs.searchbar.setSearchService(type, value);
-  }
-  componentDidMount() {
-    this.fetchData(this.props.location.query.value,
-                   this.props.location.query.yt === 'true' ? true : false,
-                   this.props.location.query.p === 'true' ? true : false);
-  }
-  fetchData(v, yt, p) {
-    this.setState({loading: true, error: null});
-    let plats = {
-      youtube: (yt) ? 'youtube' : null,
-      periscope: (p) ? 'periscope' : null
-    }
-    axios.get('https://live-stream-api.herokuapp.com/v1/videos/search', {
-               params: {
-                 query: v,
-                 platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
-               }})
-      .then(res => {
-        this.updateResult(res.data);
-        this.setState({
-          loading: false,
-          error: null
-        });
-      })
-      .catch(err => {
-        this.setState({
-          loading: false,
-          error: err
-        });
-      });
   }
   renderLoading() {
     return (
@@ -61,26 +19,22 @@ class Search extends Component {
   renderError() {
     return (
       <div>
-        Uh oh: {this.state.error.message}
+        Uh oh: {this.props.error.message}
       </div>
     );
   }
   renderResults() {
-    if(this.state.error) {
+    if(this.props.error) {
       return this.renderError();
     }
     else {
-      var items = this.state.results;
-      var itemList = items.map(function(it, index){
-                      return (
-                          <Listitem object={it} key={index}>
-                          </Listitem>
-                      );
-                    })
+      // Concat two arrays for now (twitch + youtube)
+      var itemsArray = [];
+      itemsArray = (this.props.results.youtube) ? itemsArray.concat(this.props.results.youtube) : itemsArray;
+      itemsArray = (this.props.results.twitch) ? itemsArray.concat(this.props.results.twitch) : itemsArray;
       return (
-        <Collection>
-          {itemList}
-        </Collection>
+        <Searchlist list={itemsArray}>
+        </Searchlist>
       );
     }
   }
@@ -99,24 +53,24 @@ class Search extends Component {
                 <Searchbar ref="searchbar" mini="true"
                            value={this.props.location.query.value}
                            youtube={this.props.location.query.yt === 'true'}
-                           periscope={this.props.location.query.p === 'true'}
-                           callbackParent={(v, yt, p) => this.fetchData(v, yt, p)}>
+                           twitch={this.props.location.query.p === 'true'}
+                           callbackParent={(v, yt, p) => this.props.fetchData(v, yt, p)}>
                 </Searchbar>
               </Col>
               <Col m={4} className="hide-on-small-only">
                   <Streamchoice name="Youtube Live" type="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Periscope" type="periscope"
-                                initialChecked={this.props.location.query.p === 'true'}
+                  <Streamchoice name="Twitch" type="twitch"
+                                initialChecked={this.props.location.query.t === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
               <Col s={12} offset={"s1"} className="hide-on-med-and-up mobile">
                   <Streamchoice name="Youtube Live" type="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice name="Periscope" type="periscope"
-                                initialChecked={this.props.location.query.p === 'true'}
+                  <Streamchoice name="Twitch" type="twitch"
+                                initialChecked={this.props.location.query.t === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
             </Row>
@@ -125,7 +79,7 @@ class Search extends Component {
         <div className="container">
           <Row>
             <Col s={12}> {
-              this.state.loading ?
+              this.props.loading ?
               this.renderLoading() :
               this.renderResults()
               }
@@ -137,4 +91,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default SearchView;

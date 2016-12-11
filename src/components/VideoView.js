@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import logo from './../logo.svg';
 import {Row, Col, Icon} from 'react-materialize';
-import './../css/Video.css';
+import './../css/VideoView.css';
 import {browserHistory, Link} from 'react-router';
 
-class Video extends Component {
-  constructor(props) {
-    super(props);
-  }
-  goBack(e) {
-    e.preventDefault();
-    window.history.back();
-  }
+class VideoView extends Component {
   render() {
     return (
       <div className="Video">
@@ -20,10 +13,10 @@ class Video extends Component {
             <Row>
               <Col s={12} className="left-align">
                 <span className="navbar-content black-text">
-                  <a href="#" onClick={this.goBack}>
+                  <a href="#" onClick={this.props.goBack}>
                     <Icon className="black-text">arrow_left</Icon>
                   </a>
-                  {this.props.params.videoId}
+                  {}
                 </span>
               </Col>
             </Row>
@@ -40,4 +33,5 @@ class Video extends Component {
   }
 }
 
-export default Video;
+
+export default VideoView;

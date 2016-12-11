@@ -21,7 +21,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col s={12} m={10} offset={"m1"}>
-              <Searchbar ref="searchbar" youtube="true" periscope="true">
+              <Searchbar ref="searchbar" youtube="true" twitch="true">
               </Searchbar>
             </Col>
           </Row>
@@ -32,7 +32,7 @@ class App extends Component {
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={5} l={4}>
-              <Streamcard name="Periscope" type="periscope" mini="false"
+              <Streamcard name="Twitch" type="twitch" mini="false"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>

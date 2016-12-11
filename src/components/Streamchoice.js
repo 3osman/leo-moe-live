@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './../css/Streamchoice.css';
 import youtube from './../img/youtube-logo.svg';
-import periscope from './../img/periscope-logo.svg';
+import twitch from './../img/twitch-logo.svg';
 
 class Streamchoice extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Streamchoice extends Component {
                onChange={this.handleChange}
                />
         <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
-          <img src={this.props.type === 'youtube' ? youtube : periscope} alt="Logo" />
+          <img src={this.props.type === 'youtube' ? youtube : twitch} alt="Logo" />
         </label>
       </div>
     );

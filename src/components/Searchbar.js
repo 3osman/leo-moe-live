@@ -10,7 +10,7 @@ class Searchbar extends Component {
     this.state = {value: ((this.props.value) ? this.props.value : "" ),
                   services: {
                     youtube: this.props.youtube,
-                    periscope: this.props.periscope
+                    twitch: this.props.twitch
                   }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,15 +24,15 @@ class Searchbar extends Component {
     event.preventDefault();
     if (this.state.value !== "" &&
         !(this.state.services.youtube === false &&
-          this.state.services.periscope === false)) {
+          this.state.services.twitch === false)) {
       browserHistory.push('/search?value=' +
                           this.state.value +
                           '&yt=' +
                           this.state.services.youtube +
-                          '&p=' +
-                          this.state.services.periscope);
+                          '&t=' +
+                          this.state.services.twitch);
       if (this.props.mini) {
-        this.props.callbackParent(this.state.value, this.state.services.youtube, this.state.services.periscope);
+        this.props.callbackParent(this.state.value, this.state.services.youtube, this.state.services.twitch);
       }
     }
   }
@@ -40,8 +40,8 @@ class Searchbar extends Component {
     if (type === 'youtube') {
       this.setState({ services: { ...this.state.services, youtube: value } });
     }
-    else if (type === 'periscope') {
-      this.setState({ services: { ...this.state.services, periscope: value } });
+    else if (type === 'twitch') {
+      this.setState({ services: { ...this.state.services, twitch: value } });
     }
   }
   render() {
@@ -53,7 +53,7 @@ class Searchbar extends Component {
                 waves='light' icon='search'
                 disabled={this.state.value === "" ||
                           (this.state.services.youtube === false &&
-                          this.state.services.periscope === false)} />
+                          this.state.services.twitch === false)} />
         </Link>
         <input className="search-text grey-text grey-darken-4"
                type="text"
