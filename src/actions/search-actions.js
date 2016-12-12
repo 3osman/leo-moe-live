@@ -7,9 +7,10 @@ export function getListSuccess(results) {
   };
 }
 
-export function searchStart() {
+export function searchStart(search) {
   return {
-    type: types.SEARCH_START
+    type: types.SEARCH_START,
+    search
   };
 }
 

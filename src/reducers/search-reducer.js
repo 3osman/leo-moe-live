@@ -3,7 +3,8 @@ import * as types from '../actions/action-types';
 const initialState = {
   loading: false,
   error: null,
-  results: {}
+  results: {},
+  search: ""
 }
 
 function searchReducer (state = initialState, action) {
@@ -11,9 +12,9 @@ function searchReducer (state = initialState, action) {
     case types.SEARCH_SUCCESS:
       return Object.assign({}, state, { results: action.results, loading: false, error: null });
     case types.SEARCH_START:
-      return Object.assign({}, state, { results: initialState.results , loading: true , error: null});
+      return Object.assign({}, state, { results: initialState.results , search: action.search, loading: true , error: null});
     case types.SEARCH_ERROR:
-      return Object.assign({}, state, { loading: false, error: action.error });
+      return Object.assign({}, state, { loading: false, search: "", error: action.error });
     default:
       return state;
   }

@@ -13,13 +13,17 @@ class SearchContainer extends Component {
     super(props);
     this.fetchData = this.fetchData.bind(this);
   }
-  componentWillMount() {
-    this.fetchData(this.props.value,
+  componentDidMount() {
+    if(this.props.search === this.props.value) {
+    }
+    else {
+      this.fetchData(this.props.value,
                 this.props.yt === 'true' ? true : false,
                 this.props.t === 'true' ? true : false);
+    }
   }
   fetchData(v, yt, t) {
-    this.props.dispatch(searchStart());
+    this.props.dispatch(searchStart(v));
     let plats = {
       youtube: (yt) ? 'youtube' : null,
       twitch: (t) ? 'twitch' : null
@@ -64,7 +68,9 @@ class SearchContainer extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
+    search: state.searchState.search,
     results: state.searchState.results,
     loading: state.searchState.loading,
     error: state.searchState.error,
