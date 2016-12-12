@@ -1,6 +1,6 @@
 {
   "name": "livestream-search",
-  "homepage": "https://3osman.github.io/livestream-search",
+  "homepage": "https://3osman.github.io/live-client-side",
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
