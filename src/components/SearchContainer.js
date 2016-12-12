@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, {PropTypes, Component } from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import SearchView from './../components/SearchView';
 import './../css/SearchContainer.css';
 import axios from 'axios';
+import {getListSuccess, searchStart, searchFailed} from './../actions/search-actions';
 
 const api_url = 'https://live-stream-api.herokuapp.com/v1/videos/search';
 
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {results: [],
-                  loading: true,
-                  error: null};
     this.fetchData = this.fetchData.bind(this);
   }
-  componentDidMount() {
-    this.fetchData(this.props.location.query.value,
-                   this.props.location.query.yt === 'true' ? true : false,
-                   this.props.location.query.t === 'true' ? true : false);
+  componentWillMount() {
+    this.fetchData(this.props.value,
+                this.props.yt === 'true' ? true : false,
+                this.props.t === 'true' ? true : false);
   }
   fetchData(v, yt, t) {
-    this.setState({loading: true, error: null});
+    this.props.dispatch(searchStart());
     let plats = {
       youtube: (yt) ? 'youtube' : null,
       twitch: (t) ? 'twitch' : null
@@ -30,29 +30,48 @@ class SearchContainer extends Component {
                  platforms: Object.keys(plats).map((k) => {return plats[k]}).join(",")
                }})
       .then(res => {
-        this.setState({
-          loading: false,
-          error: null,
-          results: res.data
-        });
+        this.props.dispatch(getListSuccess(res.data));
       })
-      .catch(err => {
-        this.setState({
-          loading: false,
-          error: err
-        });
+      .catch(error => {
+        if (error.response) {
+          // The request was made, but the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error:', error.message);
+        }
+        console.log(error.config);
+
+        this.props.dispatch(searchFailed(error));
       });
   }
   render() {
     return (
-      <SearchView loading={this.state.loading}
-                  error={this.state.error}
-                  results={this.state.results}
+      <SearchView loading={this.props.loading}
+                  error={this.props.error}
+                  results={this.props.results}
                   location={this.props.location}
+                  value={this.props.value}
+                  yt={this.props.yt}
+                  t={this.props.t}
                   fetchData={this.fetchData}>
       </SearchView>
     );
   }
-}
+};
 
-export default SearchContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    results: state.searchState.results,
+    loading: state.searchState.loading,
+    error: state.searchState.error,
+    yt: ownProps.location.query.yt,
+    t: ownProps.location.query.t,
+    value: ownProps.location.query.value
+  };
+};
+
+export default connect(mapStateToProps)(SearchContainer);
