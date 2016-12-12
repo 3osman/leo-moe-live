@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './../logo.svg';
+import logo from './../logo_2.gif';
 import Streamchoice from './../components/Streamchoice';
 import Searchbar from './../components/Searchbar';
 import {Row, Col} from 'react-materialize';
@@ -16,7 +16,7 @@ class Home extends Component {
           <Row className="hero">
             <h3 className="logo-wrapper">
               <img src={logo} className="App-logo" alt="logo" />
-              OnAir.tv
+              Reemote
             </h3>
             <p>
               Search live videos around the internet
