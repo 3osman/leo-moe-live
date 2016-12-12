@@ -69,7 +69,7 @@ class VideoView extends Component {
             <Col s={12} className="streaming-container">
               <span className="platform">
                 <img src={this.props.platform === 'youtube' ? youtube : twitch} alt="Logo" />
-                <span className="viewers-label"> {this.props.platform} </span>
+                <span className="viewers-label"> {this.props.platform.charAt(0).toUpperCase() + this.props.platform.slice(1)} </span>
               </span>
               <span className="viewers">
                 {this.props.results.viewers ? <i className="material-icons black-text">remove_red_eye</i> : <i />}
