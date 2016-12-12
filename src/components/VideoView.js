@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import logo from './../logo.svg';
 import {Row, Col, Icon, ProgressBar} from 'react-materialize';
@@ -38,7 +39,7 @@ class VideoView extends Component {
         <nav className="navbar">
           <div className="nav-wrapper white navbar-wrapper">
             <Row>
-              <Col s={12} className="left-align">
+              <Col s={12} className="left-align">
                 <span className="navbar-content black-text">
                   <a href="#" onClick={this.props.goBack}>
                     <Icon className="black-text">arrow_left</Icon>
