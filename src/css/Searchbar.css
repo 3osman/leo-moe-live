@@ -2,7 +2,7 @@
   padding: 0px;
 }
 .Searchbar {
-  padding: 20px;
+  padding: 0px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: right;
@@ -21,6 +21,7 @@
 }
 .search-text:focus {
   color: #000 !important;
+  box-shadow: none !important;
 }
 .search-button {
   flex-shrink: 0;

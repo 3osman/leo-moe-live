@@ -55,7 +55,7 @@ class Searchbar extends Component {
       <CardPanel className="Searchbar">
         <Link onClick={this.search}>
         <Button floating large
-                className='teal lighten-2 search-button'
+                className='red lighten-2 search-button'
                 waves='light' icon='search'
                 disabled={this.state.value === "" ||
                           (this.state.services.youtube === false &&

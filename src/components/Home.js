@@ -13,11 +13,14 @@ class Home extends Component {
     return (
       <div className="search-container container">
         <div className="Home">
-          <Row>
+          <Row className="hero">
             <h3 className="logo-wrapper">
               <img src={logo} className="App-logo" alt="logo" />
               OnAir.tv
             </h3>
+            <p>
+              Search live videos around the internet
+            </p>
           </Row>
           <Row>
             <Col s={12} m={10} offset={"m1"}>
