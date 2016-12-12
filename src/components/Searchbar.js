@@ -14,11 +14,17 @@ class Searchbar extends Component {
                   }
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.search = this.search.bind(this);
     this.setSearchService = this.setSearchService.bind(this);
   }
   handleChange(event) {
     this.setState({value: event.target.value});
+  }
+  handleKeyPress(event) {
+    if(event.key === 'Enter'){
+      this.search(event);
+    }
   }
   search(event) {
     event.preventDefault();
@@ -60,7 +66,8 @@ class Searchbar extends Component {
                name="search"
                placeholder={(this.state.value !== "") ? this.state.value : "Search live stream.."}
                value={this.state.value}
-               onChange={this.handleChange} />
+               onChange={this.handleChange}
+               onKeyPress={this.handleKeyPress} />
       </CardPanel>
     );
   }
