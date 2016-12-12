@@ -11,8 +11,8 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="search-container container">
-        <div className="Home">
+      <div className="Home">
+        <div className="search-container container">
           <Row className="hero">
             <h3 className="logo-wrapper">
               <img src={logo} className="App-logo" alt="logo" />
