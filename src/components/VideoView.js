@@ -1,11 +1,10 @@
 
 import React, { Component } from 'react';
-import logo from './../logo.svg';
-import {Row, Col, Icon, ProgressBar, MediaBox} from 'react-materialize';
+import {Row, Col, ProgressBar} from 'react-materialize';
 import './../css/VideoView.css';
-import {browserHistory, Link} from 'react-router';
-import Twitchbox from './../components/Twitchbox';
-import Youtubebox from './../components/Youtubebox';
+import Videobox from './../components/Videobox';
+import youtube from './../img/youtube-logo.svg';
+import twitch from './../img/twitch-logo.svg';
 
 class VideoView extends Component {
   constructor(props) {
@@ -29,17 +28,12 @@ class VideoView extends Component {
       return this.renderError();
     }
     else {
-      console.log(this.props.results);
-      if(this.props.platform === "youtube") {
-        return (
-          <Youtubebox url={this.props.results.streaming_url}/>
-        )
-      }
-      else if (this.props.platform === "twitch") {
-        return (
-          <Twitchbox url={this.props.results.streaming_url}/>
-        )
-      }
+      return (
+          <Videobox
+            url={this.props.results.streaming_url}
+            viewers={this.props.results.viewers}
+          />
+      )
     }
   }
   render() {
@@ -51,9 +45,11 @@ class VideoView extends Component {
               <Col s={12} className="left-align">
                 <span className="navbar-content black-text">
                   <a href="#" onClick={this.props.goBack}>
-                    <Icon className="black-text">arrow_left</Icon>
+                    <i className="material-icons black-text">arrow_back</i>
                   </a>
-                  {this.props.results.title}
+                  <span className="title">
+                    {this.props.results.title}
+                  </span>
                 </span>
               </Col>
             </Row>
@@ -61,11 +57,25 @@ class VideoView extends Component {
         </nav>
         <div className="container">
           <Row>
-            <Col s={12}> {
+            <Col s={12} className="streaming-container">
+              {
               this.props.loading ?
               this.renderLoading() :
               this.renderResults()
               }
+            </Col>
+          </Row>
+          <Row>
+            <Col s={12} className="streaming-container">
+              <span className="platform">
+                <img src={this.props.platform === 'youtube' ? youtube : twitch} alt="Logo" />
+                <span className="viewers-label"> {this.props.platform} </span>
+              </span>
+              <span className="viewers">
+                {this.props.results.viewers ? <i className="material-icons black-text">remove_red_eye</i> : <i />}
+                {this.props.results.viewers}
+                {this.props.results.viewers ? <span className="viewers-label"> viewers</span> : <span></span>}
+              </span>
             </Col>
           </Row>
         </div>

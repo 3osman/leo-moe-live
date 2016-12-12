@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import logo from './../logo.svg';
-import {Row, Col, Icon} from 'react-materialize';
 import VideoView from './../components/VideoView';
 import './../css/VideoContainer.css';
-import {browserHistory, Link} from 'react-router';
 import axios from 'axios';
 
 const api_url = 'https://live-stream-api.herokuapp.com//v1/videos/info';
