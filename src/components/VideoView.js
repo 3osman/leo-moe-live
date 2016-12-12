@@ -1,9 +1,11 @@
 
 import React, { Component } from 'react';
 import logo from './../logo.svg';
-import {Row, Col, Icon, ProgressBar} from 'react-materialize';
+import {Row, Col, Icon, ProgressBar, MediaBox} from 'react-materialize';
 import './../css/VideoView.css';
 import {browserHistory, Link} from 'react-router';
+import Twitchbox from './../components/Twitchbox';
+import Youtubebox from './../components/Youtubebox';
 
 class VideoView extends Component {
   constructor(props) {
@@ -28,9 +30,16 @@ class VideoView extends Component {
     }
     else {
       console.log(this.props.results);
-      return (
-        <div>{this.props.results.title}</div>
-      );
+      if(this.props.platform === "youtube") {
+        return (
+          <Youtubebox url={this.props.results.streaming_url}/>
+        )
+      }
+      else if (this.props.platform === "twitch") {
+        return (
+          <Twitchbox url={this.props.results.streaming_url}/>
+        )
+      }
     }
   }
   render() {
@@ -44,7 +53,7 @@ class VideoView extends Component {
                   <a href="#" onClick={this.props.goBack}>
                     <Icon className="black-text">arrow_left</Icon>
                   </a>
-                  {this.state.title}
+                  {this.props.results.title}
                 </span>
               </Col>
             </Row>
