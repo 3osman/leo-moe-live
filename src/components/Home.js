@@ -3,6 +3,7 @@ import logo from './../logo_2.gif'
 import Streamchoice from './../components/Streamchoice'
 import Searchbar from './../components/Searchbar'
 import {Row, Col} from 'react-materialize'
+import {Link} from 'react-router'
 import './../css/Home.css'
 
 class Home extends Component {
@@ -23,13 +24,13 @@ class Home extends Component {
             </p>
           </Row>
           <Row>
-            <Col s={12} m={10} offset={"m1"}>
+            <Col s={12} m={12} l={12}>
               <Searchbar ref="searchbar" youtube="true" twitch="true" periscope="true">
               </Searchbar>
             </Col>
           </Row>
           <Row>
-            <Col s={12} m={4} l={4} offset={""}>
+            <Col s={12} m={4} l={4}>
               <Streamchoice mini={false} name="Youtube Live" platform="youtube"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
@@ -45,6 +46,12 @@ class Home extends Component {
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
           </Row>
+          {/*<Row>
+            <footer>
+              <Link to="about" className="white-text">ABOUT</Link>
+              <Link to="contacts" className="white-text">CONTACTS</Link>
+            </footer>
+          </Row>*/}
         </div>
       </div>
     )
