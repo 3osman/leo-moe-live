@@ -1,3 +1,6 @@
+.Video {
+  margin-bottom: 20px;
+}
 .Video .navbar-content {
   display: flex;
   align-items: center;
