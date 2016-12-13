@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import './../css/Streamchoice.css';
-import youtube from './../img/youtube-logo.svg';
-import twitch from './../img/twitch-logo.svg';
+import logos from './../utils/logos';
 import {CardPanel} from 'react-materialize';
 
 class Streamchoice extends Component {
   constructor(props) {
     super(props);
-    this.state = {checked: this.props.initialChecked};
+    this.state = {checked: this.props.initialChecked, platform: null};
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
      this.props.callbackParent(this.props.type, event.target.checked);
   }
   render() {
-   if (this.props.mini === true) {
+    if (this.props.mini === true) {
      return (
        <div className="choice-container">
          <input type="checkbox"
@@ -24,7 +23,7 @@ class Streamchoice extends Component {
                 onChange={this.handleChange}
                 />
          <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
-           <img src={this.props.type === 'youtube' ? youtube : twitch} alt="Logo" />
+           <img src={logos[this.props.platform]} alt="Logo" />
          </label>
        </div>
      )
@@ -39,7 +38,7 @@ class Streamchoice extends Component {
                 onChange={this.handleChange}
                 />
          <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
-           <img src={this.props.type === 'youtube' ? youtube : twitch} alt="Logo" />
+           <img src={logos[this.props.platform]} alt="Logo" />
            {this.props.name}
          </label>
        </CardPanel>

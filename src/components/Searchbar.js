@@ -10,7 +10,8 @@ class Searchbar extends Component {
     this.state = {value: ((this.props.value) ? this.props.value : "" ),
                   services: {
                     youtube: this.props.youtube,
-                    twitch: this.props.twitch
+                    twitch: this.props.twitch,
+                    periscope: this.props.periscope
                   }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -30,15 +31,21 @@ class Searchbar extends Component {
     event.preventDefault();
     if (this.state.value !== "" &&
         !(this.state.services.youtube === false &&
-          this.state.services.twitch === false)) {
+          this.state.services.twitch === false &&
+            this.state.services.periscope === false)) {
       browserHistory.push('/search?value=' +
                           this.state.value +
                           '&yt=' +
                           this.state.services.youtube +
                           '&t=' +
-                          this.state.services.twitch);
+                          this.state.services.twitch +
+                          '&p=' +
+                          this.state.services.periscope);
       if (this.props.mini) {
-        this.props.callbackParent(this.state.value, this.state.services.youtube, this.state.services.twitch);
+        this.props.callbackParent(this.state.value,
+                                  this.state.services.youtube,
+                                  this.state.services.twitch,
+                                  this.state.services.persicope);
       }
     }
   }
@@ -48,6 +55,9 @@ class Searchbar extends Component {
     }
     else if (type === 'twitch') {
       this.setState({ services: { ...this.state.services, twitch: value } });
+    }
+    else if (type === 'periscope') {
+      this.setState({ services: { ...this.state.services, periscope: value } });
     }
   }
   render() {
@@ -59,7 +69,8 @@ class Searchbar extends Component {
                 waves='light' icon='search'
                 disabled={this.state.value === "" ||
                           (this.state.services.youtube === false &&
-                          this.state.services.twitch === false)} />
+                          this.state.services.twitch === false &&
+                          this.state.services.periscope === false)} />
         </Link>
         <input className="search-text grey-text grey-darken-4"
                type="text"

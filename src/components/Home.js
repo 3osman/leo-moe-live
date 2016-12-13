@@ -24,18 +24,23 @@ class Home extends Component {
           </Row>
           <Row>
             <Col s={12} m={10} offset={"m1"}>
-              <Searchbar ref="searchbar" youtube="true" twitch="true">
+              <Searchbar ref="searchbar" youtube="true" twitch="true" periscope="true">
               </Searchbar>
             </Col>
           </Row>
           <Row>
-            <Col s={12} m={5} l={4} offset={"m1 l2"}>
-              <Streamchoice mini={false} name="Youtube Live" type="youtube"
+            <Col s={12} m={4} l={4} offset={""}>
+              <Streamchoice mini={false} name="Youtube Live" platform="youtube"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
-            <Col s={12} m={5} l={4}>
-              <Streamchoice mini={false} name="Twitch" type="twitch"
+            <Col s={12} m={4} l={4}>
+              <Streamchoice mini={false} name="Twitch" platform="twitch"
+                          initialChecked="true"
+                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
+            </Col>
+            <Col s={12} m={4} l={4}>
+              <Streamchoice mini={false} name="Periscope" platform="periscope"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>

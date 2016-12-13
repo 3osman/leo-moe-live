@@ -16,13 +16,15 @@ class SearchContainer extends Component {
   componentDidMount() {
     this.fetchData(this.props.location.query.value,
                    this.props.location.query.yt === 'true' ? true : false,
-                   this.props.location.query.t === 'true' ? true : false);
+                   this.props.location.query.t === 'true' ? true : false,
+                   this.props.location.query.p === 'true' ? true : false);
   }
-  fetchData(v, yt, t) {
+  fetchData(v, yt, t, p) {
     this.setState({loading: true, error: null});
     let plats = {
       youtube: (yt) ? 'youtube' : null,
-      twitch: (t) ? 'twitch' : null
+      twitch: (t) ? 'twitch' : null,
+      periscope: (p) ? 'periscope' : null
     }
     axios.get(api_url, {
                params: {

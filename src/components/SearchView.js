@@ -30,6 +30,7 @@ class SearchView extends Component {
     else {
       var youtubeList = [];
       var twitchList = [];
+      var periscopeList = [];
       if(this.props.results.youtube !== undefined) {
         youtubeList = this.props.results.youtube.map(function(it, it_index){
                       return (
@@ -46,7 +47,17 @@ class SearchView extends Component {
                         );
                       });
       }
-      if (youtubeList.length === 0 && twitchList.length === 0) {
+      if(this.props.results.periscope !== undefined) {
+        periscopeList = this.props.results.periscope.map(function(it, it_index){
+                        return (
+                            <Listitem object={it} platform="periscope" key={it_index + "p"}>
+                            </Listitem>
+                        );
+                      });
+      }
+      if (youtubeList.length === 0 &&
+          twitchList.length === 0 &&
+          periscopeList.length === 0) {
         return (
           <div className="no-results">
             <h3>No videos found</h3>
@@ -59,6 +70,7 @@ class SearchView extends Component {
           <Collection>
             {youtubeList}
             {twitchList}
+            {periscopeList}
           </Collection>
         );
       }
@@ -84,19 +96,25 @@ class SearchView extends Component {
                 </Searchbar>
               </Col>
               <Col m={4} className="hide-on-small-only">
-                  <Streamchoice mini={true} name="Youtube Live" type="youtube"
+                  <Streamchoice mini={true} name="Youtube Live" platform="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Twitch" type="twitch"
+                  <Streamchoice mini={true} name="Twitch" platform="twitch"
                                 initialChecked={this.props.location.query.t === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice mini={true} name="Periscope" platform="periscope"
+                                initialChecked={this.props.location.query.p === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
               <Col s={12} offset={"s1"} className="hide-on-med-and-up mobile">
-                  <Streamchoice mini={true} name="Youtube Live" type="youtube"
+                  <Streamchoice mini={true} name="Youtube Live" platform="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Twitch" type="twitch"
+                  <Streamchoice mini={true} name="Twitch" platform="twitch"
                                 initialChecked={this.props.location.query.t === 'true'}
+                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                  <Streamchoice mini={true} name="Periscope" platform="periscope"
+                                initialChecked={this.props.location.query.p === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>
             </Row>
