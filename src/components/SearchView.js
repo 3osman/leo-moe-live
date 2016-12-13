@@ -46,12 +46,22 @@ class SearchView extends Component {
                         );
                       });
       }
-      return (
-        <Collection>
-          {youtubeList}
-          {twitchList}
-        </Collection>
-      );
+      if (youtubeList.length === 0 && twitchList.length === 0) {
+        return (
+          <div className="no-results">
+            <h3>No videos found</h3>
+            <p>Your search criteria do not match any result.</p>
+          </div>
+        );
+      }
+      else {
+        return (
+          <Collection>
+            {youtubeList}
+            {twitchList}
+          </Collection>
+        );
+      }
     }
   }
   render() {
