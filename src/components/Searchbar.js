@@ -8,12 +8,10 @@ class Searchbar extends Component {
   constructor(props) {
     super(props)
     this.state = {value: ((this.props.value) ? this.props.value : "" ),
-                  services: {
-                    youtube: this.props.youtube,
-                    twitch: this.props.twitch,
-                    periscope: this.props.periscope
+                  youtube: this.props.youtube,
+                  twitch: this.props.twitch,
+                  periscope: this.props.periscope
                   }
-    }
     this.handleChange = this.handleChange.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
     this.search = this.search.bind(this)
@@ -30,34 +28,34 @@ class Searchbar extends Component {
   search(event) {
     event.preventDefault()
     if (this.state.value !== "" &&
-        !(this.state.services.youtube === false &&
-          this.state.services.twitch === false &&
-            this.state.services.periscope === false)) {
+        !(this.state.youtube === false &&
+          this.state.twitch === false &&
+            this.state.periscope === false)) {
       browserHistory.push('/search?value=' +
                           this.state.value +
                           '&yt=' +
-                          this.state.services.youtube +
+                          this.state.youtube +
                           '&t=' +
-                          this.state.services.twitch +
+                          this.state.twitch +
                           '&p=' +
-                          this.state.services.periscope)
+                          this.state.periscope)
       if (this.props.mini) {
         this.props.callbackParent(this.state.value,
-                                  this.state.services.youtube,
-                                  this.state.services.twitch,
-                                  this.state.services.periscope)
+                                  this.state.youtube,
+                                  this.state.twitch,
+                                  this.state.periscope)
       }
     }
   }
   setSearchService(type, value) {
     if (type === 'youtube') {
-      this.setState(Object.assign({}, services, {youtube: value}))
+      this.setState({youtube: value})
     }
     else if (type === 'twitch') {
-      this.setState(Object.assign({}, services, {twitch: value}))
+      this.setState({twitch: value})
     }
     else if (type === 'periscope') {
-      this.setState(Object.assign({}, services, {periscope: value}))
+      this.setState({periscope: value})
     }
   }
   render() {
@@ -68,9 +66,9 @@ class Searchbar extends Component {
                 className='red lighten-2 search-button'
                 waves='light' icon='search'
                 disabled={this.state.value === "" ||
-                          (this.state.services.youtube === false &&
-                          this.state.services.twitch === false &&
-                          this.state.services.periscope === false)} />
+                          (this.state.youtube === false &&
+                          this.state.twitch === false &&
+                          this.state.periscope === false)} />
         </Link>
         <input className="search-text grey-text grey-darken-4"
                type="text"
