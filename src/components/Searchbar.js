@@ -45,7 +45,7 @@ class Searchbar extends Component {
         this.props.callbackParent(this.state.value,
                                   this.state.services.youtube,
                                   this.state.services.twitch,
-                                  this.state.services.persicope);
+                                  this.state.services.periscope);
       }
     }
   }
