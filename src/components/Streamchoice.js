@@ -10,7 +10,7 @@ class Streamchoice extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-     this.props.callbackParent(this.props.type, event.target.checked);
+     this.props.callbackParent(this.props.platform, event.target.checked);
   }
   render() {
     if (this.props.mini === true) {
@@ -18,11 +18,11 @@ class Streamchoice extends Component {
        <div className="choice-container">
          <input type="checkbox"
                 className="filled-in"
-                id={this.props.type + "-filled-in-box"}
+                id={this.props.platform + "-filled-in-box"}
                 defaultChecked={this.state.checked}
                 onChange={this.handleChange}
                 />
-         <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
+         <label htmlFor={this.props.platform + "-filled-in-box"} className="black-text">
            <img src={logos[this.props.platform]} alt="Logo" />
          </label>
        </div>
@@ -33,11 +33,11 @@ class Streamchoice extends Component {
        <CardPanel>
          <input type="checkbox"
                 className="filled-in"
-                id={this.props.type + "-filled-in-box"}
+                id={this.props.platform + "-filled-in-box"}
                 defaultChecked={this.state.checked}
                 onChange={this.handleChange}
                 />
-         <label htmlFor={this.props.type + "-filled-in-box"} className="black-text">
+         <label htmlFor={this.props.platform + "-filled-in-box"} className="black-text">
            <img src={logos[this.props.platform]} alt="Logo" />
            {this.props.name}
          </label>

@@ -92,7 +92,8 @@ class SearchView extends Component {
                            value={this.props.location.query.value}
                            youtube={this.props.location.query.yt === 'true'}
                            twitch={this.props.location.query.t === 'true'}
-                           callbackParent={(v, yt, t) => this.props.fetchData(v, yt, t)}>
+                           periscope={this.props.location.query.p === 'true'}
+                           callbackParent={(v, yt, t, p) => this.props.fetchData(v, yt, t, p)}>
                 </Searchbar>
               </Col>
               <Col m={4} className="hide-on-small-only">
