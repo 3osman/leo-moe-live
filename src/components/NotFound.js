@@ -1,6 +1,6 @@
-import React from 'react';
-import {Row, Col} from 'react-materialize';
-import './../css/NotFound.css';
+import React from 'react'
+import {Row, Col} from 'react-materialize'
+import './../css/NotFound.css'
 
 const NotFound = () =>
   <div className="container NotFound">
@@ -12,4 +12,4 @@ const NotFound = () =>
     </Row>
   </div>
 
-export default NotFound;
+export default NotFound

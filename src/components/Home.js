@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import logo from './../logo_2.gif';
-import Streamchoice from './../components/Streamchoice';
-import Searchbar from './../components/Searchbar';
-import {Row, Col} from 'react-materialize';
-import './../css/Home.css';
+import React, { Component } from 'react'
+import logo from './../logo_2.gif'
+import Streamchoice from './../components/Streamchoice'
+import Searchbar from './../components/Searchbar'
+import {Row, Col} from 'react-materialize'
+import './../css/Home.css'
 
 class Home extends Component {
   onChildChanged(type, value) {
-    this.refs.searchbar.setSearchService(type, value);
+    this.refs.searchbar.setSearchService(type, value)
   }
   render() {
     return (
@@ -47,8 +47,8 @@ class Home extends Component {
           </Row>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import {Row, Col, ProgressBar} from 'react-materialize';
-import './../css/VideoView.css';
-import Videobox from './../components/Videobox';
-import logos from './../utils/logos';
+import React, { Component } from 'react'
+import {Row, Col, ProgressBar} from 'react-materialize'
+import './../css/VideoView.css'
+import Videobox from './../components/Videobox'
+import logos from './../utils/logos'
 
 class VideoView extends Component {
   constructor(props) {
-    super(props);
-    this.state = {title: ""};
+    super(props)
+    this.state = {title: ""}
   }
   renderLoading() {
     return (
       <ProgressBar />
-    );
+    )
   }
   renderError() {
     return (
       <div>
         Uh oh: {this.props.error.message}
       </div>
-    );
+    )
   }
   renderResults() {
     if(this.props.error) {
-      return this.renderError();
+      return this.renderError()
     }
     else {
       return (
@@ -78,9 +78,9 @@ class VideoView extends Component {
           </Row>
         </div>
       </div>
-    );
+    )
   }
 }
 
 
-export default VideoView;
+export default VideoView

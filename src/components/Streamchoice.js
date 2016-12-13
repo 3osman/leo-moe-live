@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import './../css/Streamchoice.css';
-import logos from './../utils/logos';
-import {CardPanel} from 'react-materialize';
+import React, { Component } from 'react'
+import './../css/Streamchoice.css'
+import logos from './../utils/logos'
+import {CardPanel} from 'react-materialize'
 
 class Streamchoice extends Component {
   constructor(props) {
-    super(props);
-    this.state = {checked: this.props.initialChecked, platform: null};
-    this.handleChange = this.handleChange.bind(this);
+    super(props)
+    this.state = {checked: this.props.initialChecked, platform: null}
+    this.handleChange = this.handleChange.bind(this)
   }
   handleChange(event) {
-     this.props.callbackParent(this.props.platform, event.target.checked);
+     this.props.callbackParent(this.props.platform, event.target.checked)
   }
   render() {
     if (this.props.mini === true) {
@@ -42,10 +42,10 @@ class Streamchoice extends Component {
            {this.props.name}
          </label>
        </CardPanel>
-     );
+     )
    }
   }
 }
 
 
-export default Streamchoice;
+export default Streamchoice

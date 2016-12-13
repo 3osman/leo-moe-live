@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './../css/Videobox.css';
+import React, { Component } from 'react'
+import './../css/Videobox.css'
 
 class Videobox extends Component {
   render() {
@@ -12,8 +12,8 @@ class Videobox extends Component {
           scrolling="no"
           allowFullScreen="true">
       </iframe>
-    );
+    )
   }
 }
 
-export default Videobox;
+export default Videobox

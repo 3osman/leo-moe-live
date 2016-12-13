@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import SearchView from './../components/SearchView';
-import './../css/SearchContainer.css';
-import axios from 'axios';
+import React, { Component } from 'react'
+import SearchView from './../components/SearchView'
+import './../css/SearchContainer.css'
+import axios from 'axios'
 
-const api_url = 'https://live-stream-api.herokuapp.com/v1/videos/search';
+const api_url = 'https://live-stream-api.herokuapp.com/v1/videos/search'
 
 class SearchContainer extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {results: [],
                   loading: true,
-                  error: null};
-    this.fetchData = this.fetchData.bind(this);
+                  error: null}
+    this.fetchData = this.fetchData.bind(this)
   }
   componentDidMount() {
     this.fetchData(this.props.location.query.value,
                    this.props.location.query.yt === 'true' ? true : false,
                    this.props.location.query.t === 'true' ? true : false,
-                   this.props.location.query.p === 'true' ? true : false);
+                   this.props.location.query.p === 'true' ? true : false)
   }
   fetchData(v, yt, t, p) {
-    this.setState({loading: true, error: null});
+    this.setState({loading: true, error: null})
     let plats = {
       youtube: (yt) ? 'youtube' : null,
       twitch: (t) ? 'twitch' : null,
@@ -36,14 +36,14 @@ class SearchContainer extends Component {
           loading: false,
           error: null,
           results: res.data
-        });
+        })
       })
       .catch(err => {
         this.setState({
           loading: false,
           error: err
-        });
-      });
+        })
+      })
   }
   render() {
     return (
@@ -53,8 +53,8 @@ class SearchContainer extends Component {
                   location={this.props.location}
                   fetchData={this.fetchData}>
       </SearchView>
-    );
+    )
   }
 }
 
-export default SearchContainer;
+export default SearchContainer
