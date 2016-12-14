@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from './../logo_2.gif'
+import logo from './../logo_3.gif'
 import Streamchoice from './../components/Streamchoice'
 import Searchbar from './../components/Searchbar'
 import {Row, Col} from 'react-materialize'
