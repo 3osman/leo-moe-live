@@ -31,17 +31,17 @@ class Home extends Component {
           </Row>
           <Row>
             <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} name="Youtube Live" platform="youtube"
+              <Streamchoice mini={false} platform="youtube"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} name="Twitch" platform="twitch"
+              <Streamchoice mini={false} platform="twitch"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>
             <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} name="Periscope" platform="periscope"
+              <Streamchoice mini={false} platform="periscope"
                           initialChecked="true"
                           callbackParent={(type, value) => this.onChildChanged(type, value)} />
             </Col>

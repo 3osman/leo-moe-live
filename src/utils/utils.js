@@ -2,10 +2,14 @@ import youtube from './../img/youtube-logo.svg'
 import twitch from './../img/twitch-logo.svg'
 import periscope from './../img/periscope-logo.svg'
 
-const logos = {
+export const logos = {
   'youtube': youtube,
   'twitch': twitch,
   'periscope': periscope
 }
 
-export default logos
+export const display = {
+  'youtube': 'Youtube Live',
+  'twitch': 'Twitch',
+  'periscope': 'Periscope'
+}

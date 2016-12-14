@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Row, Col, ProgressBar} from 'react-materialize'
 import './../css/VideoView.css'
 import Videobox from './../components/Videobox'
-import logos from './../utils/logos'
+import {logos} from './../utils/utils'
 
 class VideoView extends Component {
   constructor(props) {

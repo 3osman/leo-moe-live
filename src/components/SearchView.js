@@ -96,25 +96,14 @@ class SearchView extends Component {
                            callbackParent={(v, yt, t, p) => this.props.fetchData(v, yt, t, p)}>
                 </Searchbar>
               </Col>
-              <Col m={4} className="hide-on-small-only">
-                  <Streamchoice mini={true} name="Youtube Live" platform="youtube"
+              <Col s={12} m={4} offset={"s1"}>
+                  <Streamchoice mini={true} platform="youtube"
                                 initialChecked={this.props.location.query.yt === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Twitch" platform="twitch"
+                  <Streamchoice mini={true} platform="twitch"
                                 initialChecked={this.props.location.query.t === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Periscope" platform="periscope"
-                                initialChecked={this.props.location.query.p === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
-              </Col>
-              <Col s={12} offset={"s1"} className="hide-on-med-and-up mobile">
-                  <Streamchoice mini={true} name="Youtube Live" platform="youtube"
-                                initialChecked={this.props.location.query.yt === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Twitch" platform="twitch"
-                                initialChecked={this.props.location.query.t === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} name="Periscope" platform="periscope"
+                  <Streamchoice mini={true} platform="periscope"
                                 initialChecked={this.props.location.query.p === 'true'}
                                 callbackParent={(type, value) => this.onChildChanged(type, value)} />
               </Col>

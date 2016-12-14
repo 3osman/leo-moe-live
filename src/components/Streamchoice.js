@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import './../css/Streamchoice.css'
-import logos from './../utils/logos'
+import {logos, display} from './../utils/utils'
 import {CardPanel} from 'react-materialize'
 
 class Streamchoice extends Component {
   constructor(props) {
     super(props)
-    this.state = {checked: this.props.initialChecked, platform: null}
+    this.state = {checked: this.props.initialChecked}
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange(event) {
@@ -39,7 +39,7 @@ class Streamchoice extends Component {
                 />
          <label htmlFor={this.props.platform + "-filled-in-box"} className="black-text">
            <img src={logos[this.props.platform]} alt="Logo" />
-           {this.props.name}
+           {display[this.props.platform]}
          </label>
        </CardPanel>
      )
