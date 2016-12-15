@@ -13,3 +13,16 @@ export const display = {
   'twitch': 'Twitch',
   'periscope': 'Periscope'
 }
+
+export const urlParams = (query, platform) => {
+  switch(platform) {
+    case 'youtube':
+      return query.yt
+    case 'twitch':
+      return query.t
+    case 'periscope':
+      return query.p
+    default:
+      return null
+  }
+}

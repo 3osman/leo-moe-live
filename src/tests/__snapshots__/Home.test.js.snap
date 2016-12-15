@@ -1,0 +1,115 @@
+exports[`test it renders correctly 1`] = `
+<div
+  className="Home">
+  <div
+    className="search-container container">
+    <div
+      className="row hero">
+      <h3
+        className="logo-wrapper">
+        <img
+          alt="logo"
+          className="App-logo"
+          src="logo_3.gif" />
+        Reemote
+      </h3>
+      <p>
+        Search live videos around the internet
+      </p>
+    </div>
+    <div
+      className="row">
+      <div
+        className="col s12 m12 l12">
+        <div
+          className="card-panel Searchbar">
+          <a
+            onClick={[Function]}
+            style={Object {}}>
+            <button
+              className="btn disabled waves-effect waves-light btn-large btn-floating red lighten-2 search-button"
+              icon="search"
+              onClick={undefined}>
+              <i
+                className="material-icons">
+                search
+              </i>
+            </button>
+          </a>
+          <input
+            className="search-text grey-text grey-darken-4"
+            name="search"
+            onChange={[Function]}
+            onKeyPress={[Function]}
+            placeholder="Search live stream.."
+            type="text"
+            value="" />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row">
+      <div
+        className="col s12 m4 l4">
+        <div
+          className="card-panel">
+          <input
+            className="filled-in"
+            defaultChecked="true"
+            id="youtube-filled-in-box"
+            onChange={[Function]}
+            type="checkbox" />
+          <label
+            className="black-text"
+            htmlFor="youtube-filled-in-box">
+            <img
+              alt="Logo"
+              src="youtube-logo.svg" />
+            Youtube Live
+          </label>
+        </div>
+      </div>
+      <div
+        className="col s12 m4 l4">
+        <div
+          className="card-panel">
+          <input
+            className="filled-in"
+            defaultChecked="true"
+            id="twitch-filled-in-box"
+            onChange={[Function]}
+            type="checkbox" />
+          <label
+            className="black-text"
+            htmlFor="twitch-filled-in-box">
+            <img
+              alt="Logo"
+              src="twitch-logo.svg" />
+            Twitch
+          </label>
+        </div>
+      </div>
+      <div
+        className="col s12 m4 l4">
+        <div
+          className="card-panel">
+          <input
+            className="filled-in"
+            defaultChecked="true"
+            id="periscope-filled-in-box"
+            onChange={[Function]}
+            type="checkbox" />
+          <label
+            className="black-text"
+            htmlFor="periscope-filled-in-box">
+            <img
+              alt="Logo"
+              src="periscope-logo.svg" />
+            Periscope
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

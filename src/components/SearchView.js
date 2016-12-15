@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import logo from './../logo_3.gif'
 import {Row, Col, ProgressBar, Collection} from 'react-materialize'
+import {Link} from 'react-router'
 import Searchbar from './../components/Searchbar'
 import Streamchoice from './../components/Streamchoice'
 import Listitem from './../components/Listitem'
+import {platforms} from './../utils/config'
+import {urlParams} from './../utils/utils'
 import './../css/SearchView.css'
-import {Link} from 'react-router'
 
 class SearchView extends Component {
   onChildChanged(type, value) {
@@ -97,15 +99,17 @@ class SearchView extends Component {
                 </Searchbar>
               </Col>
               <Col s={12} m={4} offset={"s1"}>
-                  <Streamchoice mini={true} platform="youtube"
-                                initialChecked={this.props.location.query.yt === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} platform="twitch"
-                                initialChecked={this.props.location.query.t === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
-                  <Streamchoice mini={true} platform="periscope"
-                                initialChecked={this.props.location.query.p === 'true'}
-                                callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                {platforms.map(function(p, index){
+                    return (
+                      <Streamchoice
+                        mini={true}
+                        key={index}
+                        platform={p}
+                        initialChecked={urlParams(this.props.location.query,p) === 'true'}
+                        callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                    )
+                  })
+                }
               </Col>
             </Row>
           </div>

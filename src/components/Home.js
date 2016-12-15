@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import logo from './../logo_3.gif'
-import Streamchoice from './../components/Streamchoice'
-import Searchbar from './../components/Searchbar'
+import Streamchoice from './Streamchoice'
+import Searchbar from './Searchbar'
 import {Row, Col} from 'react-materialize'
-import {Link} from 'react-router'
+import {platforms} from './../utils/config'
 import './../css/Home.css'
 
 class Home extends Component {
@@ -30,21 +30,18 @@ class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} platform="youtube"
-                          initialChecked="true"
-                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
-            </Col>
-            <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} platform="twitch"
-                          initialChecked="true"
-                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
-            </Col>
-            <Col s={12} m={4} l={4}>
-              <Streamchoice mini={false} platform="periscope"
-                          initialChecked="true"
-                          callbackParent={(type, value) => this.onChildChanged(type, value)} />
-            </Col>
+            {platforms.map(function(p, index){
+                return (
+                    <Col s={12} m={4} l={4} key={index}>
+                      <Streamchoice
+                        mini={false}
+                        platform={p}
+                        initialChecked="true"
+                        callbackParent={(type, value) => this.onChildChanged(type, value)} />
+                    </Col>
+                )
+              })
+            }
           </Row>
           {/*<Row>
             <footer>
